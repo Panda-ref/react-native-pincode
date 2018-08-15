@@ -2,6 +2,7 @@ import * as React from 'react'
 import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
 import PinCode, { PinStatus } from './PinCode'
 import * as Keychain from 'react-native-keychain'
+import { PinResultStatus } from '../index'
 
 /**
  * Pin Code Choose PIN Page
@@ -29,6 +30,7 @@ export type IProps = {
   titleComponent: any
   subtitleComponent: any
   pinCodeKeychainName: string
+  validatePin?: (pinCode: string) => boolean
   styleContainerPinCode?: StyleProp<ViewStyle>
   styleColorTitle?: string
   styleColorTitleError?: string
@@ -57,17 +59,31 @@ export type IProps = {
 export type IState = {
   status: PinStatus
   pinCode: string
+  pinCodeStatus: PinResultStatus
 }
 
 class PinCodeChoose extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props)
-    this.state = { status: PinStatus.choose, pinCode: '' }
+    this.state = {
+      status: PinStatus.choose,
+      pinCode: '',
+      pinCodeStatus: PinResultStatus.initial
+    }
     this.endProcessCreation = this.endProcessCreation.bind(this)
     this.endProcessConfirm = this.endProcessConfirm.bind(this)
   }
 
   endProcessCreation = (pinCode: string) => {
+    if (this.props.validatePin && !this.props.validatePin(pinCode)) {
+      this.setState({
+        pinCodeStatus: PinResultStatus.failure
+      })
+      setTimeout(() => this.setState({
+        pinCodeStatus: PinResultStatus.initial
+      }), 1000)
+      return
+    }
     this.setState({ pinCode: pinCode, status: PinStatus.confirm })
   }
 
@@ -105,6 +121,7 @@ class PinCodeChoose extends React.PureComponent<IProps, IState> {
             sentenceTitle={this.props.titleChoose}
             status={PinStatus.choose}
             subtitle={this.props.subtitleChoose}
+            pinCodeStatus={this.state.pinCodeStatus}
             buttonNumberComponent={this.props.buttonNumberComponent || null}
             passwordLength={this.props.passwordLength || 4}
             passwordComponent={this.props.passwordComponent || null}

@@ -15,6 +15,7 @@ export type IProps = {
   colorPassword?: string
   colorPasswordError?: string
   finishProcess?: any
+  validatePin?: (pinCode: string) => boolean
   handleResultEnterPin?: any
   iconComponentLockedPage?: any
   iconButtonDeleteDisabled?: boolean
@@ -173,6 +174,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           subtitleConfirm={this.props.subtitleConfirm || ''}
           passwordComponent={this.props.passwordComponent}
           finishProcess={this.props.finishProcess || null}
+          validatePin={this.props.validatePin}
           buttonNumberComponent={this.props.buttonNumberComponent}
           passwordLength={this.props.passwordLength}
           iconButtonDeleteDisabled={this.props.iconButtonDeleteDisabled}

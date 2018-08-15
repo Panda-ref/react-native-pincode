@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { PinStatus } from './PinCode';
+import { PinResultStatus } from '../index';
 /**
  * Pin Code Choose PIN Page
  */
@@ -27,6 +28,7 @@ export declare type IProps = {
     titleComponent: any;
     subtitleComponent: any;
     pinCodeKeychainName: string;
+    validatePin?: (pinCode: string) => boolean;
     styleContainerPinCode?: StyleProp<ViewStyle>;
     styleColorTitle?: string;
     styleColorTitleError?: string;
@@ -54,6 +56,7 @@ export declare type IProps = {
 export declare type IState = {
     status: PinStatus;
     pinCode: string;
+    pinCodeStatus: PinResultStatus;
 };
 declare class PinCodeChoose extends React.PureComponent<IProps, IState> {
     constructor(props: IProps);
