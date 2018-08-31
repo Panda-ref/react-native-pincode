@@ -77,6 +77,7 @@ export type IProps = {
   subtitleError?: string
   textButtonLockedPage?: string
   textDescriptionLockedPage?: string
+  textHintLockedPage?: string
   textTitleLockedPage?: string
   timeLocked?: number
   timePinLockedAsyncStorageName?: string
@@ -135,6 +136,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
         textButton={this.props.textButtonLockedPage || 'Quit'}
         changeStatus={this.changeInternalStatus}
         textDescription={this.props.textDescriptionLockedPage || undefined}
+        textHint={this.props.textHintLockedPage || undefined}
         buttonComponent={this.props.buttonComponentLockedPage || null}
         timerComponent={this.props.timerComponentLockedPage || null}
         textTitle={this.props.textTitleLockedPage || undefined}

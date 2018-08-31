@@ -72,6 +72,7 @@ export declare type IProps = {
     subtitleError?: string;
     textButtonLockedPage?: string;
     textDescriptionLockedPage?: string;
+    textHintLockedPage?: string;
     textTitleLockedPage?: string;
     timeLocked?: number;
     timePinLockedAsyncStorageName?: string;

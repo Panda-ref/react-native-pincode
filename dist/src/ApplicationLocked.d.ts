@@ -7,6 +7,7 @@ export declare type IProps = {
     textButton: string;
     changeStatus: (status: PinResultStatus) => void;
     textDescription?: string;
+    textHint?: string;
     buttonComponent?: any;
     timerComponent?: any;
     textTitle?: string;
