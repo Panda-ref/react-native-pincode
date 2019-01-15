@@ -75,7 +75,7 @@ class PinCodeEnter extends React.PureComponent {
     }
     async launchTouchID() {
         try {
-            await react_native_touch_id_1.default.authenticate(this.props.touchIDSentence);
+            await react_native_touch_id_1.default.authenticate(this.props.touchIDSentence, this.props.touchIDConfig);
             this.endProcess(this.props.storedPin || this.keyChainResult.password);
         }
         catch (e) {

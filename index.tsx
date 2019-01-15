@@ -91,6 +91,7 @@ export type IProps = {
   titleEnter?: string
   touchIDDisabled?: boolean
   touchIDSentence?: string
+  touchIDConfig?: object
 }
 
 export type IState = {
@@ -226,6 +227,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
           pinStatusExternal={this.props.pinStatus || PinResultStatus.initial}
           storedPin={this.props.storedPin || null}
           touchIDSentence={this.props.touchIDSentence || 'To unlock your application'}
+          touchIDConfig={this.props.touchIDConfig}
           status={PinStatus.enter}
           finishProcess={this.props.finishProcess || null}
           onFail={this.props.onFail || null}

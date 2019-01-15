@@ -86,6 +86,7 @@ export declare type IProps = {
     titleEnter?: string;
     touchIDDisabled?: boolean;
     touchIDSentence?: string;
+    touchIDConfig?: object;
 };
 export declare type IState = {
     internalPinStatus: PinResultStatus;
